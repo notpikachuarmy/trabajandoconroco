@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Trabajando con Roco · Miércoles de Minijuegos</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛏️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="cueva">
+
+    <header class="cartel">
+      <p class="cartel__sub" id="subtitulo">Miércoles de Minijuegos</p>
+      <h1 class="cartel__titulo" id="titulo">Trabajando con Roco</h1>
+    </header>
+
+    <div class="aviso-config" id="aviso-config" hidden></div>
+
+    <section class="libreta" aria-label="Estado del día">
+      <div class="libreta__bloque libreta__objetivo" id="bloque-objetivo">
+        <canvas class="objetivo-sprite" id="objetivo-sprite" width="64" height="64" aria-hidden="true"></canvas>
+        <div>
+          <span class="libreta__etiqueta">Objetivo de hoy</span>
+          <strong class="libreta__valor" id="objetivo-nombre">—</strong>
+        </div>
+      </div>
+      <div class="libreta__bloque">
+        <span class="libreta__etiqueta">Excavaciones</span>
+        <div class="pips" id="intentos-pips" aria-live="polite"></div>
+      </div>
+      <div class="libreta__bloque">
+        <span class="libreta__etiqueta">Se reinicia en</span>
+        <strong class="libreta__valor libreta__reloj" id="cuenta-atras">--:--:--</strong>
+      </div>
+    </section>
+
+    <main class="mina">
+      <div class="estabilidad" id="estabilidad" aria-label="Estabilidad de la pared">
+        <span class="estabilidad__texto">Pared</span>
+        <div class="estabilidad__barra"><div class="estabilidad__relleno" id="estabilidad-relleno"></div></div>
+      </div>
+
+      <div class="marco">
+        <div class="marco__pared">
+          <canvas id="pared" class="pared" aria-label="Pared de roca. Toca para excavar."></canvas>
+          <div class="pantalla" id="pantalla" hidden></div>
+        </div>
+      </div>
+
+      <div class="herramientas" role="radiogroup" aria-label="Herramienta">
+        <button class="herramienta activa" data-herramienta="pico" role="radio" aria-checked="true">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9 Q16 1 28 9 L26 11 Q16 5 6 11Z" fill="#c9ced6" stroke="#2b1d14" stroke-width="1.5"/><rect x="14.5" y="8" width="3" height="21" rx="1" fill="#a86b3d" stroke="#2b1d14" stroke-width="1.5"/></svg>
+          <span class="herramienta__nombre" id="nombre-pico">Pico</span>
+          <span class="herramienta__detalle">Preciso, desgasta poco</span>
+        </button>
+        <button class="herramienta" data-herramienta="martillo" role="radio" aria-checked="false">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="20" height="10" rx="2" fill="#c9ced6" stroke="#2b1d14" stroke-width="1.5"/><rect x="14.5" y="13" width="3" height="16" rx="1" fill="#a86b3d" stroke="#2b1d14" stroke-width="1.5"/></svg>
+          <span class="herramienta__nombre" id="nombre-martillo">Martillo</span>
+          <span class="herramienta__detalle">Rompe más, desgasta más</span>
+        </button>
+      </div>
+    </main>
+
+    <section class="bolsa" aria-labelledby="bolsa-titulo">
+      <h2 class="bolsa__titulo" id="bolsa-titulo">Tu bolsa de hoy</h2>
+      <ul class="bolsa__lista" id="bolsa-lista"></ul>
+    </section>
+
+    <footer class="pie">
+      <button class="boton-pie" id="boton-sonido" aria-pressed="false">Sonido: sí</button>
+      <button class="boton-pie boton-pie--pruebas" id="boton-reset" hidden>Borrar progreso (pruebas)</button>
+    </footer>
+  </div>
+
+  <div class="avisos" id="avisos" aria-live="polite"></div>
+
+  <!-- 1. Configuración y datos (lo que tú editas) -->
+  <script src="config/config.js"></script>
+  <script src="data/objetos.js"></script>
+  <script src="data/sonidos.js"></script>
+  <!-- 2. Lógica del juego -->
+  <script src="js/almacen.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/excavacion.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/interfaz.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
