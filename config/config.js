@@ -49,8 +49,11 @@ const CONFIG = {
   objetosPorExcavacion: { min: 2, max: 4 },
 
   /* Probabilidad de que el objeto objetivo esté enterrado
-     en una excavación (0 = nunca, 1 = siempre, 0.35 = 35 %) */
-  probabilidadObjetivo: 0.35,
+     en una excavación. 1 = SIEMPRE aparece (recomendado:
+     así es justo y la dificultad está en desenterrarlo
+     antes de que se derrumbe la pared).
+     0.5 = en la mitad de las paredes, etc. */
+  probabilidadObjetivo: 1,
 
   /* Bloques de roca dura (no se pueden romper) */
   rocasDuras: { min: 1, max: 3 },
