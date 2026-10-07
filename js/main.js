@@ -119,6 +119,7 @@
       estado.ganadoA = horaVictoria();
       const enterrado = p.objetos.find(o => o.id === OBJETO_OBJETIVO);
       Render.efectoVictoria(enterrado);
+      Interfaz.iniciarTextos(true);
       Audio8.reproducir("objetivo");
       Audio8.vibrar([60, 40, 60, 40, 160]);
       setTimeout(() => Interfaz.pantallaVictoria(enterrado, estado.ganadoA), 1300);
@@ -163,7 +164,7 @@
   Render.iniciar(canvas);
   comprobarConfig();
   estado = Almacen.cargar();
-  Interfaz.iniciarTextos();
+  Interfaz.iniciarTextos(estado.ganado);
   decidirPantalla();
   setInterval(tic, 1000);
 

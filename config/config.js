@@ -27,26 +27,26 @@ const CONFIG = {
   zonaHoraria: "Europe/Madrid",    // el día se reinicia a las 00:00 de esta zona
 
   /* Mostrar al jugador cuál es el objeto que busca.
-     Pon false si quieres que sea sorpresa. */
-  mostrarObjetivo: true,
+     false = es secreto: solo se revela cuando alguien lo encuentra. */
+  mostrarObjetivo: false,
 
   /* MODO PRUEBAS: intentos ilimitados y botón para borrar el progreso.
      Úsalo solo para probar. ¡Ponlo en false antes de publicar! */
   modoPruebas: false,
 
   /* ---------- La pared ---------- */
-  columnas: 13,                    // ancho de la pared en casillas
-  filas: 10,                       // alto de la pared en casillas
-  capaMin: 2,                      // capas de roca mínimas por casilla
+  columnas: 15,                    // ancho de la pared en casillas
+  filas: 11,                       // alto de la pared en casillas
+  capaMin: 3,                      // capas de roca mínimas por casilla
   capaMax: 6,                      // capas de roca máximas por casilla (máx. 6)
 
   /* Resistencia de la pared. Cada golpe la desgasta;
      cuando llega a 0 se derrumba y termina el intento.
      Más alto = más fácil. */
-  estabilidadPared: 80,
+  estabilidadPared: 45,
 
   /* Cuántos objetos hay enterrados en cada excavación */
-  objetosPorExcavacion: { min: 2, max: 4 },
+  objetosPorExcavacion: { min: 3, max: 5 },
 
   /* Probabilidad de que el objeto objetivo esté enterrado
      en una excavación. 1 = SIEMPRE aparece (recomendado:
@@ -69,7 +69,7 @@ const CONFIG = {
      desgaste: cuánto daña la pared cada golpe */
   herramientas: {
     pico:     { nombre: "Pico",     centro: 2, cruz: 1, diagonal: 0, desgaste: 1 },
-    martillo: { nombre: "Martillo", centro: 2, cruz: 2, diagonal: 1, desgaste: 2 }
+    martillo: { nombre: "Martillo", centro: 2, cruz: 2, diagonal: 1, desgaste: 3 }
   },
 
   /* ---------- Tamaños de los objetos ----------

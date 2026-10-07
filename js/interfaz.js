@@ -26,7 +26,7 @@ const Interfaz = (() => {
     return o ? o.nombre : id;
   }
 
-  function iniciarTextos() {
+  function iniciarTextos(revelado = false) {
     $("titulo").textContent = CONFIG.titulo;
     $("subtitulo").textContent = CONFIG.subtitulo;
     document.title = `${CONFIG.titulo} – ${CONFIG.subtitulo}`;
@@ -38,7 +38,7 @@ const Interfaz = (() => {
     g.imageSmoothingEnabled = false;
     g.clearRect(0, 0, 64, 64);
     const objetivo = Excavacion.buscarObjeto(OBJETO_OBJETIVO);
-    if (CONFIG.mostrarObjetivo && objetivo) {
+    if ((CONFIG.mostrarObjetivo || revelado) && objetivo) {
       const img = Sprites.obtener(objetivo.id);
       if (img) g.drawImage(img, 6, 6, 52, 52);
       $("objetivo-nombre").textContent = objetivo.nombre;
@@ -47,7 +47,7 @@ const Interfaz = (() => {
       g.font = "bold 40px 'Pixelify Sans', monospace";
       g.textAlign = "center"; g.textBaseline = "middle";
       g.fillText("?", 32, 35);
-      $("objetivo-nombre").textContent = "Sorpresa";
+      $("objetivo-nombre").textContent = "Secreto";
     }
   }
 
@@ -148,6 +148,7 @@ const Interfaz = (() => {
       <div class="tarjeta">
         <h2>Hay algo en esta pared</h2>
         <p>Toca la roca para excavar. Cada golpe la agrieta: si se derrumba, se acaba la excavación.</p>
+        ${CONFIG.mostrarObjetivo ? "" : `<p class="detalle">El objetivo de hoy es secreto. Sabrás cuál era cuando lo desentierres.</p>`}
         <button class="boton" data-accion>${textoBotonExcavar(usados)}</button>
       </div>`, { alPulsar });
   }
@@ -157,7 +158,7 @@ const Interfaz = (() => {
     const titulo = motivo === "completa" ? "Pared vaciada" : "La pared se ha derrumbado";
     const intro = motivo === "completa"
       ? "Has sacado todo lo que había, pero el objetivo no estaba aquí."
-      : "Se acabó esta excavación.";
+      : "Se acabó esta excavación sin dar con el objetivo.";
     const pie = quedan
       ? `<button class="boton" data-accion>${CONFIG.modoPruebas ? "Nueva excavación" : `Nueva excavación (${usados + 1} de ${CONFIG.intentosDiarios})`}</button>`
       : `<p><strong>Has usado tus ${CONFIG.intentosDiarios} excavaciones de hoy.</strong></p>
